@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane style="-fx-background-color: #e6e6e6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sant.alexis.weather_app.WeatherApp">
+   <left>
+      <VBox prefHeight="721.0" prefWidth="294.0" style="-fx-background-color: #11cbd7;" BorderPane.alignment="TOP_CENTER">
+         <children>
+            <HBox prefHeight="37.0" prefWidth="315.0">
+               <children>
+                  <TextField fx:id="searchBar" prefHeight="71.0" prefWidth="117.0" promptText="Enter city name" style="-fx-background-color: white; -fx-background-radius: 30px;">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Italic" size="15.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="refreshButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="10.0" minWidth="3.0" mnemonicParsing="false" onAction="#refreshWeatherData" prefHeight="36.0" prefWidth="54.0" style="-fx-background-color: #11cbd7; -fx-background-radius: 30px;" HBox.hgrow="NEVER">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="77.0" style="-fx-font-size: 12px; -fx-background-color: orange; -fx-background-radius: 30px;" text="Search">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </HBox>
+            <Label fx:id="currentLocationName" prefHeight="42.0" prefWidth="173.0">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="20.0" top="50.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Arial Italic" size="20.0" />
+               </font>
+            </Label>
+            <Separator prefWidth="200.0">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+            </Separator>
+            <ImageView fx:id="currentWeatherIcon" pickOnBounds="true" preserveRatio="true" translateX="-4.0">
+               <VBox.margin>
+                  <Insets left="10.0" top="100.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label fx:id="currentTemperatureLabel">
+               <font>
+                  <Font size="70.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="40.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="currentWeatherDescription">
+               <VBox.margin>
+                  <Insets bottom="15.0" left="55.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Arial Italic" size="25.0" />
+               </font>
+            </Label>
+            <Separator prefWidth="200.0">
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+            </Separator>
+            <Label fx:id="currentDate">
+               <VBox.margin>
+                  <Insets left="20.0" top="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Arial Italic" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="295.0" text="Points of  Interest" textFill="WHITE" underline="true">
+               <font>
+                  <Font name="Arial" size="25.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #11cbd7;" VBox.vgrow="ALWAYS">
+               <content>
+                  <VBox fx:id="attractionsVBox" prefHeight="200.0" prefWidth="281.0" spacing="15.0" style="-fx-background-color: #11cbd7;">
+                     <children>
+                        <Label contentDisplay="BOTTOM">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label contentDisplay="BOTTOM" layoutX="10.0" layoutY="10.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label contentDisplay="BOTTOM" layoutX="10.0" layoutY="28.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label contentDisplay="BOTTOM">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label contentDisplay="BOTTOM">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label contentDisplay="BOTTOM">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label contentDisplay="BOTTOM">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label contentDisplay="BOTTOM">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label contentDisplay="BOTTOM">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label contentDisplay="BOTTOM">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="721.0" prefWidth="643.0" style="-fx-background-color: #f0fff3;" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane hgap="30.0" style="-fx-background-color: #c6f1e7;" vgap="30.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="currentHumidityLabel">
+                     <font>
+                        <Font name="Arial Italic" size="20.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="currentWindSpeedLabel" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Arial Italic" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="currentSunriseLabel" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial Italic" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="currentSunsetLabel" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial Italic" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="currentUVIndex" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial Italic" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" top="30.0" />
+               </VBox.margin>
+            </GridPane>
+            <Label text="Hourly" underline="true">
+               <font>
+                  <Font name="Arial Italic" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" top="30.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <LineChart fx:id="hourlyChart" legendVisible="false" style="-fx-font-size: 16px;" HBox.hgrow="ALWAYS">
+                    <xAxis>
+                      <CategoryAxis fx:id="X" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis fx:id="Y" label="Temperature" side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+               </children>
+            </HBox>
+            <Label text="This Week" underline="true">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Arial Italic" size="20.0" />
+               </font>
+            </Label>
+            <BorderPane prefHeight="147.0" prefWidth="400.0" style="-fx-background-color: #f0fff3;">
+               <center>
+                  <BorderPane BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </BorderPane.margin>
+                     <bottom>
+                        <HBox fx:id="weatherIcons" prefHeight="80.0" prefWidth="603.0">
+                           <children>
+                              <Label contentDisplay="TOP">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label contentDisplay="BOTTOM">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label contentDisplay="BOTTOM" prefHeight="89.0" prefWidth="72.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label contentDisplay="BOTTOM">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Region>
+                              <Label contentDisplay="BOTTOM">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                              </Label>
+                              <Region layoutX="283.0" layoutY="10.0" HBox.hgrow="ALWAYS" />
+                              <Label contentDisplay="BOTTOM" layoutX="286.0" layoutY="10.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Region layoutX="283.0" layoutY="10.0" HBox.hgrow="ALWAYS" />
+                              <Label contentDisplay="BOTTOM" layoutX="355.0" layoutY="10.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView pickOnBounds="true" preserveRatio="true" />
+                                 </graphic>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="-15.0" />
+                           </padding>
+                        </HBox>
+                     </bottom>
+                     <center>
+                        <HBox fx:id="daysOfTheWeek" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label layoutX="10.0" layoutY="10.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label layoutX="43.0" layoutY="10.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label layoutX="76.0" layoutY="10.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label layoutX="76.0" layoutY="10.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label layoutX="76.0" layoutY="10.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label layoutX="109.0" layoutY="10.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </center>
+                  </BorderPane>
+               </center>
+               <bottom>
+                  <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox prefHeight="100.0" prefWidth="642.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <HBox fx:id="highTemperatures" prefHeight="52.0" prefWidth="141.0">
+                                 <children>
+                                    <Label prefHeight="30.0" prefWidth="36.0">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                    <Label>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                    <Label>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                    <Label>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                    <Label>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                    <Label>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                    <Label>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets left="25.0" right="25.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox fx:id="lowTemperatures" prefHeight="70.0" prefWidth="100.0">
+                                 <children>
+                                    <Label>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="8.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                    <Label>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="8.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                    <Label>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="8.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                    <Label>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="6.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                    <Label>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="-5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                    <Label>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                    <Label>
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="27.0" right="27.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </bottom>
+            </BorderPane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
